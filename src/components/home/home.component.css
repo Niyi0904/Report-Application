@@ -1,0 +1,16 @@
+.home-sub_header{
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    color: #7E6227;
+    font-weight: 600;
+}
+.home-btn{
+    background-color: white;
+    width: 70%;
+    height: 70px;
+    border-radius: 0.5rem;
+    border: 1px solid #7E6227;
+    padding-left: 2px;
+    padding-right: 2px;
+
+}

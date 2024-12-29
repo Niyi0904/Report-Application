@@ -1,0 +1,45 @@
+.mobile-container {
+    background-color: #7E6227; 
+    width: 50%;
+    position: fixed;
+    z-index: 1000;
+    position: relative;
+    height: 60%;
+    border-radius: 20px;
+  }
+  .mobile-sub-container {
+    margin-top: 20px;
+    margin-left: 20px
+  }
+  .mobile-input-text {
+    display: block;
+    margin-bottom: 20px;
+    width: 300px;
+  }
+  .mobile-input-date {
+    display: block;
+    margin-bottom: 20px;
+    width: 300px;
+  }
+  .mobile-create {
+    padding-right: 10px;
+  }
+  .mobile-todo-create {
+    display: block;
+    margin-top: 40px;
+    margin-left: 40%;
+    
+  }
+  .create{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    width: 60px;
+    height: 40px;
+  }
+
+  .input-header {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: 600;
+}

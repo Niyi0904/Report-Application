@@ -1,0 +1,30 @@
+.sign-in-container {
+    background: white;
+    width: 50%;
+}
+.signin-header {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.5em;
+    color: #7E6227;
+    font-weight: 600;
+}
+.signin-button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    box-shadow: 1px 1px 0.5px #473816;
+    background-color: #7E6227 !important;
+    border: 1px solid #473816;
+}
