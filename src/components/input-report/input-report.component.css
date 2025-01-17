@@ -1,12 +1,25 @@
 .mobile-container {
+    font-family: 'Raleway', sans-serif;
     background-color: #7E6227; 
     width: 50%;
     position: fixed;
     z-index: 1000;
     position: relative;
-    height: 60%;
+    height: 70%;
     border-radius: 20px;
   }
+
+  @media (min-width: 640px) and (max-width: 1006px) {
+    .mobile-container {
+        width: 80%;
+    }
+}
+
+  @media (min-width: 200px) and (max-width: 639px) {
+    .mobile-container {
+        width: 80%;
+    }
+}
   .mobile-sub-container {
     margin-top: 20px;
     margin-left: 20px
@@ -14,12 +27,13 @@
   .mobile-input-text {
     display: block;
     margin-bottom: 20px;
-    width: 300px;
+    width: 100%;
   }
   .mobile-input-date {
+    position: relative;
     display: block;
-    margin-bottom: 20px;
-    width: 300px;
+    margin-bottom: 30px;
+    width: 100%;
   }
   .mobile-create {
     padding-right: 10px;

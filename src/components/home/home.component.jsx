@@ -15,7 +15,7 @@ const Home = ({ id, data }) => {
                 <div className='relative pl-3 text-left w-[60%]'>
                     {Array.isArray(data.TodaysReport) && (
                         data.TodaysReport.map((report, index) => (
-                            <div>
+                            <div className='my-8'>
                                 <div className='home-sub_header pb-3 pt-8'>{report.ReportType}</div>
                                 <div>{report.ReportDetails}</div>
                             </div>

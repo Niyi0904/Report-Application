@@ -2,6 +2,7 @@ import HomePage from "./pages/Homepage/homepage";
 import SignInAndSignUp from "./pages/SignInAndSignUpPage/signin-and-signup";
 import SignIn from "./components/signin/signin.component";
 import SignUp from "./components/signup/signup.component";
+import Input from "./components/input-report/input-report.component";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { UseStateContext } from "./context/contextProvider";

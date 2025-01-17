@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getUserDetails } from "../../firebase/firebase.utils";
 import { UseStateContext } from "../../context/contextProvider";
 
-import MobileCreateTodo from "../../components/input-report/input-report.component";
+import Input from "../../components/input-report/input-report.component";
 
 import './homepage.css';
 
@@ -38,15 +38,15 @@ const HomePage = () => {
     }, [user])
 
     return (
-        <div id="niyi">
-            {onAdd && <MobileCreateTodo/>}
+        <div id="niyi" className="home-container">
+            {onAdd && <Input/>}
             <Navbar/>
-            <div className='relative bg-white w-[85.5%] min-h-28 mx-auto text-center pt-6 top-6 rounded-md'>
+            <div className='relative bg-white w-full min-h-28 mx-auto text-center pt-6 top-6 rounded-md'>
                 <h1 className='home-header'>Your Weekly Reporting Application</h1>
             </div>
 
-            <div className='relative bg-white w-[20%] h-8 mx-auto flex justify-center top-9 rounded-md'>
-                <button className='relative w-full bg-sky-600 rounded-md' onClick={handle}>Add new Report</button>
+            <div className='relative w-[100%] h-8 mx-auto flex justify-center top-9 rounded-md'>
+                <button className='relative h-10 w-[20%] xs:w-[40%] sm:w-[40%] bg-sky-600 rounded-sm text-lg tracking-wide font-medium' onClick={handle}>Add New Report</button>
             </div>
 
             {currentUserProfile &&
