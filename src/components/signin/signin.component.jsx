@@ -8,7 +8,7 @@ const SignIn = () => {
     return (
         <div className='flex justify-center sign-in-container'>
             {isLoading && <IsLoading text='Signing in....'/>}
-            <div className="flex flex-col bg-white w-[40%] xs:w-[80%] sm:w-[80%] min-h-96 items-center relative top-20 space-y-11">
+            <div className="flex flex-col bg-white w-[40%] xs:w-[90%] sm:w-[90%] min-h-96 items-center relative top-20 space-y-11">
                 <h1 className='signin-header'>Welcome!</h1>
                 <div className='relative w-[90%]'>
                     <form id="signin-form" onSubmit={handleSignIn}>

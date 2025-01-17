@@ -8,11 +8,11 @@ const SignUp = () => {
     return (
         <div className='flex justify-center'>
             {isLoading && <IsLoading text='Registering...'/>}
-            <div className="flex flex-col bg-white rounded-md w-[40%] min-h-96 items-center relative top-7 space-y-11">
+            <div className="flex flex-col bg-white rounded-md w-[40%] xs:w-[90%] sm:w-[90%] min-h-96 items-center relative top-7 space-y-11">
                 <h1 className='signin-header'>Register</h1>
                 <div className='relative w-[90%]'>
                     <form id="signin-form" onSubmit={handleSubmit} >
-                        <div className="flex xs:flex xs:flex-col sm:flex sm:flex-col relative w-full space-y-7">
+                        <div className="flex flex-col relative w-full space-y-7">
                             <div className="flex flex-col relative w-full space-y-2">
                                 <label for="name">Name</label>
                                 <input 

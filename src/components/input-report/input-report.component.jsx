@@ -18,7 +18,7 @@ const Input = () => {
   }
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className='mobile-container xs:w-[80%] sm:w-[80%]'>
+      <div className='mobile-container xs:w-[90%] sm:w-[90%]'>
         <div className='mobile-sub-container flex flex-col justify-center relative w-[90%]'>
           <div className='relative w-full flex justify-center mx-auto bottom-3 rounded-md'>
             <h1 className='input-header text-2xl  tracking-wider font-medium'>Add New Report</h1>
