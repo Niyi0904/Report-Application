@@ -18,19 +18,19 @@ const SignIn = () => {
                                 <input value={name} type="text" name="name" placeholder="Name" required  className="h-10 pl-2 mr-10 rounded-lg text-gray-700 bg-white border-2 border-gray-700 sm:mb-4 sm:w-80 xs:mb-4 xs:w-80"/>
                             </div> */}
 
-                            <div className="flex flex-col item relative w-[80%] space-y-2">
+                            <div className="flex flex-col item relative w-[100%] space-y-2">
                                 <label for="email">Email</label>
                                 <input type="email" onChange={handleEmail} id='email' name="email" placeholder="Email" required className="h-8 pl-2 mr-10 rounded-md bg-white border-2 border-gray-500 relative w-full"/>
                             </div>
 
-                            <div className="flex flex-col relative w-[80%] space-y-2">
+                            <div className="flex flex-col relative w-[100%] space-y-2">
                             <label for="password">Password</label>
                             <input type="password" onChange={handlePassword} id="password" name="password" placeholder="Password" required className="h-8 pl-2 mr-10 rounded-md bg-white border-2 border-gray-500 relative w-full"/>
                             </div>
                         </div>
 
                         <div className=" flex justify-center mt-12 font-bold text-4xl w-full" >
-                            <button className="signin-button items-center w-[40%]" type='submit'>Submit</button>
+                            <button className="signin-button items-center w-[50%]" type='submit'>Submit</button>
                         </div>
                         
                     </form>
@@ -41,7 +41,7 @@ const SignIn = () => {
                     </div>
                     <div className='pb-10 pl-2 relative w-full flex flex-col'>
                         <Link to='/signup'>
-                            <button className="relative signin-button w-[40%] justify-center">Sign Up</button>
+                            <button className="relative signin-button w-[50%] justify-center">Sign Up</button>
                         </Link>
                     </div>
             </div>
