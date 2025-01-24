@@ -12,12 +12,12 @@ const Home = ({ id, data }) => {
     <div className='home-container'>
         <div className='relative bg-white w-[85%] min-h-96 mx-auto top-12 rounded-md'>
             <div className='text-center'>
-                <div className='relative grid grid-cols-3 gap-y-6 gap-x-6 mx-auto px-3 text-left w-[100%] top-5'>
+                <div className='relative grid grid-cols-3 gap-y-6 gap-x-6 mx-auto px-3 text-left w-[100%] top-2'>
                     <Link to='/evangelismPage'>  
                         <button className='home-btn'>Evangelism Reports</button>
                     </Link>
 
-                    <button className='home-btn'>Follow-up Report <span className='inline-block bg-slate-400 w-[40%] rounded-md'>Beta</span></button>
+                    <button className='home-btn'>Follow-up Reports <span className='inline-block bg-slate-400 w-[40%] rounded-md'>Beta</span></button>
                     
                     <button className='home-btn'>Sunday Reports <span className='inline-block bg-slate-400 w-[40%] rounded-md'>Beta</span></button>
 
