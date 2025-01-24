@@ -10,7 +10,7 @@ const Home = ({ id, data }) => {
     }
     return(
     <div className='home-container'>
-        <div className='relative bg-white w-[85%] min-h-96 mx-auto top-12 rounded-md'>
+        <div className='relative bg-white w-[85%] home-height mx-auto top-12 rounded-md'>
             <div className='text-center'>
                 <div className='relative grid grid-cols-3 gap-y-4 gap-x-6 mx-auto px-3 text-left w-[100%] top-2'>
                     <Link to='/evangelismPage'>  
