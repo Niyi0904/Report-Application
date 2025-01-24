@@ -3,6 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 import { auth } from '../../firebase/firebase.utils';
@@ -25,8 +26,10 @@ const Navbar = () => {
                     Welcome {currentUserProfile.name}
                 </div>
                 <div className='flex navbar-icons space-x-11 xs:space-x-5 sm:space-x-5 top-2 relative w-[15%] xs:w-[30%] sm:w-[25%] text-end'>
-                    <button onClick={auth.signOut} className='relative bottom-1'>
-                        <FaHome />
+                    <button className='relative bottom-1'>
+                        <Link to={"/"}>
+                            <FaHome />
+                        </Link>
                     </button>
 
                     <button onClick={auth.signOut} className='relative bottom-1'>

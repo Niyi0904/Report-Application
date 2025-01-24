@@ -1,3 +1,6 @@
+.home-container{
+    font-family: 'Raleway', sans-serif;
+}
 .home-sub_header{
     font-family: 'Raleway', sans-serif;
     font-size: 2em;
@@ -5,9 +8,10 @@
     font-weight: 600;
 }
 .home-btn{
+    position: relative;
     background-color: white;
-    width: 70%;
-    height: 70px;
+    width: 100%;
+    min-height: 70px;
     border-radius: 0.5rem;
     border: 1px solid #7E6227;
     padding-left: 2px;
