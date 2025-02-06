@@ -22,13 +22,21 @@ const FollowupReportPage = () => {
         const getUser = async () => {
             if (currentUserProfile) {
                 const collectionRef = collection(firestore, 'users', `${currentUserProfile.uid}`, 'FollowUp-Report');
-                const snapshot = await getDocs(collectionRef)
+                const snapshot = await getDocs(collectionRef);
+                async function countTotalFields() {
+                    let totalFields = 0;
+                    snapshot.forEach((doc) => {
+                      totalFields += Object.keys(doc.data()).length;
+                    });
+                  
+                    console.log(`Total number of fields in all documents: ${totalFields}`);
+                  }
+                  countTotalFields();
+
                 const fetchedDocs = snapshot.docs.map((doc) => ({
                     id: doc.id,
                     data: doc.data(), // Fetch the entire document data;
                 }));
-
-                console.log(fetchedDocs.id)
                 setDoc(fetchedDocs);
             }
         }

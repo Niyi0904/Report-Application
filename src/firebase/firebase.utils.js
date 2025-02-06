@@ -2,22 +2,22 @@ import Firebase from 'firebase/compat/app';
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
+import 'firebase/compat/auth'; 
 
 import { FieldValue, SnapshotMetadata, arrayUnion } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { json } from 'react-router';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD2MJqgXbwc48LP8uH8DFMdA9n1V2YEfZ0",
-    authDomain: "reports-74d36.firebaseapp.com",
-    projectId: "reports-74d36",
-    storageBucket: "reports-74d36.firebasestorage.app",
-    messagingSenderId: "99045565447",
-    appId: "1:99045565447:web:afce1d0227c9e6e17376a2",
-    measurementId: "G-ZGTBZ0N9YL"
+    apiKey: process.env.REACT_APP_PUBLIC_API_KEY,
+    authDomain: process.env.REACT_APP_PUBLIC_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PUBLIC_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_PUBLIC_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_PUBLIC_APP_ID,
+    measurementId: process.env.REACT_APP_PUBLIC_MEASUREMENT_ID
   };
-
+ 
 export const createUserProfileDocument = async (userAuth, userInfo) => {
   if (!userAuth) {
     return;
