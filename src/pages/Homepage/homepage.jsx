@@ -12,9 +12,9 @@ import './homepage.css';
 const HomePage = () => {
 
     return (
-        <div id="niyi">
+        <div id="niyi" className="h-screen relative">
             <Navbar/>
-            <div className='relative bg-white w-full min-h-28 mx-auto text-center pt-6 top-6 rounded-md'>
+            <div className='relative homepage-header-bg w-full min-h-28 mx-auto text-center pt-6 top-6'>
                 <h1 className='home-header'>Your Weekly Reporting Application</h1>
             </div>
 

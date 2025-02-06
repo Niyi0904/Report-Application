@@ -20,7 +20,7 @@ const Navbar = () => {
         setCurrentUserprofile(null);
     }
     return (
-        <div className='mt-2 px-2 w-full border-b-2 border-[#7E6227]'>
+        <div className='px-2 w-full border-b-2 border-[#7E6227]'>
             <div className='flex justify-between'>
                 <div className='navbar-header'>
                     Welcome {currentUserProfile.name}
