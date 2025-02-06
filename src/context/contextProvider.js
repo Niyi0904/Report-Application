@@ -1,86 +1,106 @@
 import { createContext, useContext, useState } from "react";
 import { firestore, auth } from "../firebase/firebase.utils";
 import { createUserProfileDocument } from "../firebase/firebase.utils";
+import { FieldValue, SnapshotMetadata, arrayUnion } from 'firebase/firestore';
 
-import { addUserToFirestore } from "../firebase/firebase.utils";
-// import { addUserToFirestore } from "../firebase/firebase.utils";
-// import { Navigate } from "react-router";
-// import { Link } from "react-router-dom";
 
 const StateContext = createContext();
-
 export const ContextProvider =({children}) => {
+// GLOBAL STATES
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserProfile, setCurrentUserprofile] = useState(null);
-
   const [isLoading, setIsLoading] = useState(false);
   const [onAdd, setOnAdd] = useState(false);
+  const [user, setUser] = useState(undefined);
+  const [others, setOthers] = useState('');
+  const handleOthers = (e) => (
+    setOthers(e.target.value)
+  );
 
-  const [user, setUser] = useState(undefined)
-
-    
+// REGISTRATION/AUTHENTICATION STATES AND FUNCTIONS
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [gender, setGender] = useState('');
-  const [prayerGroup, setPrayerGroup] = useState('');
-  const [report, setReport] = useState('')
-  const [date, setDate] = useState('');
-  const [reportType, setReportType] = useState('');
-
-  // auth.onAuthStateChanged(async userAuth =>{
-  //   const uid = userAuth.uid
-  //   const userRef = firestore.doc(`users/${uid}`)
-  //   const snapshot = await userRef.get()
-  //   const result = snapshot.data()
-
-
-  // })
-//   const [add, setAdd] = useState([]);
-//   const [isClicked, setIsClicked] = useState(false);
-
-//   const [userName, setUserName] = useState({
-//     Name: '',
-//     email: ''
-//   });
-
   const handleName = (e) => (
     setName(e.target.value)
   );
+
+  const [date, setDate] = useState('');
+  const handleDate = (e) => (
+    setDate(e.target.value)
+  );
+
+  const [phone, setPhone] = useState('');
   const handlePhone = (e) => (
     setPhone(e.target.value)
   );
+
+  const [email, setEmail] = useState('');
   const handleEmail = (e) => (
     setEmail(e.target.value)
   );
+
+  const [password, setPassword] = useState('');
   const handlePassword = (e) => {
     setPassword(e.target.value)
-  }
+  };
+
+  const [confirmPassword, setConfirmPassword] = useState('');
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value)
-  }
-  const handleReport = (e) => (
-    setReport(e.target.value)
-  )
-  const handleDate = (e) => (
-    setDate(e.target.value)
-  )
-  const handleReportType = () => {
-    const selected = document.getElementById('report-type').value;
-    setReportType(selected);
-  }
+  };
+
+  const [gender, setGender] = useState('');
   const selectGender = () => {
     const selected = document.getElementById('gender').value;
     setGender(selected);
-  }
+  };
+
+  const [prayerGroup, setPrayerGroup] = useState('');
   const selectPrayerGroup = () => {
     const selectedPrayerGroup = document.getElementById('prayer-group').value;
     setPrayerGroup(selectedPrayerGroup);
+  };
+
+
+// EVANGELISM STATES AND FUNCTIONS
+  const [address, setAddress] = useState('');
+  const handleAddress = (e) => (
+    setAddress(e.target.value)
+  );
+
+  const [status, setStatus] = useState('');
+  const handleStatus = () => {
+    const selected = document.getElementById('status').value;
+    setStatus(selected);
   }
 
-  const handleSubmit = async event =>{
+  const [report, setReport] = useState('')
+  const handleReport = (e) => (
+    setReport(e.target.value)
+  );
+
+// FOLLOW-UP STATES AND FUNCTIONS
+  const [topic, setTopic] = useState('');
+  const handleTopic = (e) => (
+    setTopic(e.target.value)
+  );
+
+  const [time, setTime] = useState('');
+  const handleTime = (e) => (
+    setTime(e.target.value)
+  );
+
+  const [remark, setRemark] = useState('');
+  const handleRemark = (e) => (
+    setRemark(e.target.value)
+  );
+
+  const [duration, setDuration] = useState('')
+  const handleDuration = (e) => (
+    setDuration(e.target.value)
+  );
+  
+// SIGNUP WITH EMAIL AND PASSWORD
+  const handleSignUp = async event =>{
     event.preventDefault();
 
     setIsLoading(true);
@@ -115,18 +135,12 @@ export const ContextProvider =({children}) => {
         setCurrentUserprofile(getUser.data());
         setTimeout(setIsLoading(false), 1000);
       }
-      // this.setState({
-      //   displayName: '',
-      //   email: '',
-      //   password: '',
-      //   confirmPassword: ''
-      // });
     } catch (error) {
       setTimeout(setIsLoading(false), 1000);
       alert(error.code);
     }
   };
-
+// SIGNIN WITH EMAIL AND PASSWORD
   const handleSignIn = async event =>{
     event.preventDefault();
     setIsLoading(true);
@@ -164,73 +178,102 @@ export const ContextProvider =({children}) => {
       }
     }
   };
-
-  const newReport = {
-    Date: date,
-    ReportType: reportType,
-    ReportDetails: report
-  }
-
-  const handleAdd = () => {
+// ADD EVANGELISM REPORT FUNCTION
+  const handleAddEvangelismReport = () => {
     setOnAdd(false);
-    // if(newTask.plan.trim() && newTask.dates.trim() !== '') {
-    //   setIsClicked(false);
-    // }
 
-    if(date.trim() && reportType.trim() && report.trim() !== '') {
+    if (date.trim() !== '') {
       setOnAdd(false);
       const stateChange = auth.onAuthStateChanged(async userAuth => {
-        // const uid = userAuth.uid
-  
-        // addUserToFirestore(uid, newTask)
-  
         if (userAuth) {
           const uid = userAuth.uid
-          const update = await addUserToFirestore(uid, newReport)
-  
-          const tas = update.get()
-  
-          setUser(tas);
-        } else{
-          alert('You have to login First')
-        } 
+          const userRef = firestore.doc(`users/${uid}`);
+          const userRefCollectionPosts = userRef.collection('Evangelism-Report').doc(date)
+          const snapshot = await userRefCollectionPosts.get()
+
+          if (snapshot.exists) {
+            await userRefCollectionPosts.update({
+            TodaysReport:arrayUnion({
+              NAME: name,
+              STATUS: status,
+              PHONE: phone,
+              ADDRESS: address, 
+              OTHERS: others
+            })
+            })
+        
+            console.log('updated');
+          } else {
+            userRefCollectionPosts.set({
+              TodaysReport:arrayUnion({
+                NAME: name,
+                STATUS: status,
+                PHONE: phone,
+                ADDRESS: address,
+                OTHERS: others
+              })
+            });
+            
+            setUser(userRefCollectionPosts);
+            console.log('done setting');
+          }
+        } else {
+          alert('You have to login First');
+        };
       });
+    } else {
+      alert('Please Fill Required Areas');
     }
   }
+// ADD FOLLOW-UP REPORT FUNCTION
+const handleAddFollowUpReport = () => {
+  setOnAdd(false);
 
-//   const newTask = {
-//     plan: value,
-//     dates: date
-//   }
+  if (date.trim() && name.trim() !== '') {
+    setOnAdd(false);
+    const stateChange = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const uid = userAuth.uid
+        const userRef = firestore.doc(`users/${uid}`);
+        const userRefCollectionPosts = userRef.collection('FollowUp-Report').doc(date)
+        const snapshot = await userRefCollectionPosts.get()
 
-//   const handleAdd = () => {
-//     if(newTask.plan.trim() && newTask.dates.trim() !== '') {
-//       setIsClicked(false);
-//     }
-
-//     if(newTask.plan.trim() && newTask.dates.trim() !== '') {
-//       const stateChange = auth.onAuthStateChanged(async userAuth => {
-//         // const uid = userAuth.uid
-  
-//         // addUserToFirestore(uid, newTask)
-  
-//         if (userAuth) {
-//           const uid = userAuth.uid
-//           const update = await addUserToFirestore(uid, newTask)
-  
-//           const tas = update.get()
-  
-//           const result = (await tas).data()
-  
-//           setAdd(result.newTasks)
-  
-//           console.log(add)
-//         } else{
-//           alert('You have to login First')
-//         } 
-//       });
-//     }
-//   }
+        if (snapshot.exists) {
+          await userRefCollectionPosts.update({
+          TodaysReport:arrayUnion({
+            NAME: name,
+            TOPIC: topic,
+            DURATION: duration,
+            TIME: time, 
+            REMARKS: remark,
+            OTHERS: others
+          })
+          })
+      
+          console.log('updated');
+        } else {
+          userRefCollectionPosts.set({
+            TodaysReport:arrayUnion({
+              NAME: name,
+              TOPIC: topic,
+              DURATION: duration,
+              TIME: time, 
+              REMARKS: remark,
+              OTHERS: others
+            })
+          });
+          
+          setUser(userRefCollectionPosts);
+          console.log('done setting');
+        }
+      } else {
+        alert('You have to login First');
+      };
+    });
+  } else {
+    alert('Please Fill Required Areas');
+  }
+}
 
   return (
   <StateContext.Provider
@@ -250,7 +293,7 @@ export const ContextProvider =({children}) => {
       handleEmail, 
       handlePassword,
       handleConfirmPassword,
-      handleSubmit,
+      handleSignUp,
       handleSignIn,
       selectGender,
       selectPrayerGroup,
@@ -260,17 +303,27 @@ export const ContextProvider =({children}) => {
       currentUserProfile,
       report,
       date,
-      reportType,
       handleDate,
       handleReport,
-      handleReportType,
-      handleAdd,
+      handleAddEvangelismReport,
       onAdd,
       setOnAdd,
-      user
-    //   isClicked, setIsClicked,
-    //   userName, setUserName
-    }}
+      user,
+      address,
+      handleAddress,
+      status,
+      handleStatus,
+      others,
+      handleOthers,
+      setTopic,
+      handleTopic,
+      setTime,
+      handleTime,
+      setDuration,
+      handleDuration,
+      setRemark, 
+      handleRemark,
+      handleAddFollowUpReport }}
   >
     {children}
   </StateContext.Provider>

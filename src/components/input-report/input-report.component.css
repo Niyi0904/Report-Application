@@ -1,12 +1,21 @@
-.mobile-container {
+.mobile-followup-container {
     font-family: 'Raleway', sans-serif;
     background-color: #7E6227; 
-    width: 50%;
+    width: 80%;
     position: fixed;
     z-index: 1000;
     position: relative;
-    height: 70%;
-    border-radius: 20px;
+    height: 80%;
+    border-radius: 0.4rem;
+  }
+  .mobile-evangelism-container {
+    font-family: 'Raleway', sans-serif;
+    background-color: #7E6227; 
+    position: fixed;
+    z-index: 1000;
+    position: relative;
+    height: 72%;
+    border-radius: 0.4rem;
   }
 
   @media (min-width: 640px) and (max-width: 1006px) {
@@ -26,14 +35,50 @@
   }
   .mobile-input-text {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     width: 100%;
+    background: hsl(39, 67%, 92%);;
+
   }
-  .mobile-input-date {
+  .mobile-input-name {
     position: relative;
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     width: 100%;
+    background: rgb(248, 238, 220);;
+  }
+
+  .mobile-input-duration {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    width: 80%;
+    background: rgb(248, 238, 220);;
+  }
+  .mobile-input-status {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    background: rgb(248, 238, 220);;
+  }
+  .mobile-input-time {
+    width: 100%;
+    background: rgb(248, 238, 220);;
+  }
+
+  .mobile-input-phone {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    background: rgb(248, 238, 220);;
+  }
+  .mobile-input-topic {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: rgb(248, 238, 220);;
   }
   .mobile-create {
     padding-right: 10px;
@@ -54,6 +99,9 @@
 
   .input-header {
     font-family: 'Raleway', sans-serif;
-    color: white;
+    color: rgb(248, 238, 220);;
     font-weight: 600;
+}
+.texts{
+  color: rgb(248, 238, 220);
 }

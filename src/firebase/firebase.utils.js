@@ -3,6 +3,7 @@ import Firebase from 'firebase/compat/app';
 // import { getAnalytics } from "firebase/analytics";
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+
 import { FieldValue, SnapshotMetadata, arrayUnion } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { json } from 'react-router';
@@ -95,49 +96,49 @@ export const createUserProfileDocument = async (userAuth, userInfo) => {
 //   }
 // }
 
-export const addUserToFirestore = async (id, newReport) => {
-  const userRef = firestore.doc(`users/${id}`);
-  const userRefCollectionPosts = userRef.collection('reports').doc(newReport.Date)
-  const snapshot = await userRefCollectionPosts.get()
+// export const addUserToFirestore = async (id, newReport) => {
+//   const userRef = firestore.doc(`users/${id}`);
+//   const userRefCollectionPosts = userRef.collection('reports').doc(newReport.Date)
+//   const snapshot = await userRefCollectionPosts.get()
 
-  const {ReportType, ReportDetails, Date} = newReport
+//   const {ReportType, ReportDetails, Date} = newReport
 
-  if (snapshot.exists) {
-    await userRefCollectionPosts.update({
-    TodaysReport:arrayUnion({
-      Date,
-      ReportType,
-      ReportDetails
-    })
-    })
+//   if (snapshot.exists) {
+//     await userRefCollectionPosts.update({
+//     TodaysReport:arrayUnion({
+//       Date,
+//       ReportType,
+//       ReportDetails
+//     })
+//     })
 
-      console.log('updated');
-  } else {
-    userRefCollectionPosts.set({
-      TodaysReport:arrayUnion({
-        Date,
-        ReportType,
-        ReportDetails
-      })
-    });
+//     console.log('updated');
+//   } else {
+//     userRefCollectionPosts.set({
+//       TodaysReport:arrayUnion({
+//         Date,
+//         ReportType,
+//         ReportDetails
+//       })
+//     });
 
-    console.log('done setting');
-  }
+//     console.log('done setting');
+//   }
 
 
-  // const theTasks = await userRefCollectionPosts.get()
+//   // const theTasks = await userRefCollectionPosts.get()
 
-  // const data = theTasks.d
-      // const userRef = firestore.doc(`users/${id}`)
+//   // const data = theTasks.d
+//       // const userRef = firestore.doc(`users/${id}`)
   
-      // // const userRefCollectionPosts = userRef.collection('Posts');
+//       // // const userRefCollectionPosts = userRef.collection('Posts');
 
-      // const snapShot = await userRef.get();
+//       // const snapShot = await userRef.get();
 
-      // console.log(snapShot.exists);
+//       // console.log(snapShot.exists);
 
-  return userRefCollectionPosts
-}
+//   return userRefCollectionPosts
+// }
 
 // export const getUserDetails = async (id) => {
 //   const userRef = firestore.doc(`users/${id}`);

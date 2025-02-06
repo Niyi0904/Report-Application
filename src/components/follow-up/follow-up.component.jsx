@@ -5,21 +5,40 @@ const FollowUp = ({ id, data }) => {
     const {onAdd, setOnAdd} = UseStateContext();
 
     const handle = () => {
-        setOnAdd(true);
+        setOnAdd(true); 
     }
     return(
     <div>
-        <div className='relative bg-white w-[85%] min-h-96 mx-auto top-10 mt-5 rounded-md'>
+        <div className='relative follow-up-bg w-[85%] min-h-96 mx-auto top-10 mt-5 rounded-md'>
             <div className='text-center'>
                 <h1 className='home-sub_header pb-8'>{id}</h1>
-                <div className='relative pl-3 text-left w-[60%]'>
-                    {Array.isArray(data.TodaysReport) && (
-                        data.TodaysReport.map((report, index) => (
-                            <div className='my-8'>
-                                <div className='home-sub_header pb-3 pt-8'>{report.ReportType}</div>
-                                <div>{report.ReportDetails}</div>
-                            </div>
-                        ))
+                <div className='relative pl-3 text-left w-[90%]'>
+                    {Array.isArray(data.TodaysReport) ? (
+                        <ol className="list-decimal mx-4 text-lg w-full text-gray-800">
+                            {data.TodaysReport.map((report, index) => (
+                                <li key={index} className='pb-4'>
+                                    <div className='my-3 space-y-1'> 
+                                        <div><span className='font-bold'>Name:</span> {report.NAME}</div>
+
+                                        <div><span className='font-bold'>Topic:</span> {report.TOPIC}</div>
+                                        
+
+                                        <div><span className='font-bold'>Duration:</span> {report.DURATION}</div>
+
+                                        <div><span className='font-bold'>Time:</span> {report.TIME}</div>
+
+                                        <div className='flex'>
+                                            <span className='font-bold'>Status:</span> 
+                                            <div className='pl-2'>{report.REMARKS}</div>
+                                        </div>
+
+                                        <div><span className='font-bold'>Addition:</span> {report.OTHERS}</div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
+                    ) : (
+                        <div>Add New Rport</div>
                     )}
                 </div>
             </div>

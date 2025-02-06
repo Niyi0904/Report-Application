@@ -1,11 +1,10 @@
-import './evangelism.component.css';
 import { UseStateContext } from '../../context/contextProvider';
 
-const Evangelism = ({ id, data }) => {
+const OldReportComponent = ({ id, data }) => {
     const {onAdd, setOnAdd} = UseStateContext();
 
     const handle = () => {
-        setOnAdd(true); 
+        setOnAdd(true);
     }
     return(
     <div>
@@ -13,19 +12,13 @@ const Evangelism = ({ id, data }) => {
             <div className='text-center'>
                 <h1 className='home-sub_header pb-8'>{id}</h1>
                 <div className='relative pl-3 text-left w-[60%]'>
-                    {Array.isArray(data.TodaysReport) && ( 
-                        <ol className="list-decimal mx-4 text-lg text-gray-800">
-                            {data.TodaysReport.map((report, index) => (
-                                <li key={index} className='pb-4'>
-                                    <div className='my-2'>
-                                        <div>{report.NAME}</div>
-                                        <div>{report.STATUS}</div>
-                                        <div>{report.PHONE}</div>
-                                        <div>{report.ADDRESS}</div>
-                                    </div>
-                                </li>
-                            ))}
-                    </ol>
+                    {Array.isArray(data.TodaysReport) && (
+                        data.TodaysReport.map((report, index) => (
+                            <div className='my-8'>
+                                <div className='home-sub_header pb-3 pt-8'>{report.ReportType}</div>
+                                <div>{report.ReportDetails}</div>
+                            </div>
+                        ))
                     )}
                 </div>
             </div>
@@ -33,7 +26,7 @@ const Evangelism = ({ id, data }) => {
     </div>
 )};
 
-export default Evangelism;
+export default OldReportComponent;
 
 
 

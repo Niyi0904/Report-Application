@@ -1,10 +1,10 @@
 import Navbar from "../../components/navbar/navbar.component";
 import { firestore } from "../../firebase/firebase.utils";
+import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { getUserDetails } from "../../firebase/firebase.utils";
 import { UseStateContext } from "../../context/contextProvider";
 
-import Input from "../../components/input-report/input-report.component";
+import { InputFollowUp } from "../../components/input-report/input-report.component";
 
 import './followupReportPage.component.css';
 import FollowUp from "../../components/follow-up/follow-up.component";
@@ -21,15 +21,14 @@ const FollowupReportPage = () => {
 
         const getUser = async () => {
             if (currentUserProfile) {
-                const userRef = firestore.doc(`users/${currentUserProfile.uid}`);
-                const userRefCollectionPosts = userRef.collection('reports')
-                const snapshot = await userRefCollectionPosts.get();
-                
+                const collectionRef = collection(firestore, 'users', `${currentUserProfile.uid}`, 'FollowUp-Report');
+                const snapshot = await getDocs(collectionRef)
                 const fetchedDocs = snapshot.docs.map((doc) => ({
                     id: doc.id,
-                    data: doc.data(), // Fetch the entire document data
+                    data: doc.data(), // Fetch the entire document data;
                 }));
 
+                console.log(fetchedDocs.id)
                 setDoc(fetchedDocs);
             }
         }
@@ -39,19 +38,19 @@ const FollowupReportPage = () => {
 
     return (
         <div id="niyi" className="home-container">
-            {onAdd && <Input/>}
+            {onAdd && <InputFollowUp/>}
             <Navbar/>
-            <div className='relative bg-white w-full min-h-28 mx-auto text-center pt-6 top-6 rounded-md'>
-                <h1 className='home-header'>Evangelism Report</h1>
+            <div className='relative title-bg w-full min-h-28 mx-auto text-center pt-6 top-6'>
+                <h1 className='home-header'>Follow-up Report</h1>
             </div>
 
             <div className='relative w-[100%] h-8 mx-auto flex justify-center top-9 rounded-md'>
-                <button className='relative h-10 w-[20%] xs:w-[40%] sm:w-[40%] bg-sky-600 rounded-sm text-lg tracking-wide font-medium' onClick={handle}>Add New Report</button>
+                <button className='relative h-10 min-w-[20%] xs:min-w-[40%] px-4 sm:min-w-[40%] bg-sky-600 rounded-md text-md tracking-wide font-medium' onClick={handle}>Add New Follow-Up Report</button>
             </div>
 
             {currentUserProfile &&
-                doc.map((doc) => (
-                    <FollowUp key={doc.id} id={doc.id} data={doc.data} />
+                doc.map((docs) => (
+                    <FollowUp key={docs.id} id={docs.id} data={docs.data} />
             ))}
         </div>
 )};

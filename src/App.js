@@ -4,10 +4,11 @@ import SignIn from "./components/signin/signin.component";
 import SignUp from "./components/signup/signup.component";
 import Input from "./components/input-report/input-report.component";
 import { Routes, Route, Navigate } from "react-router-dom";
+import OldReport from "./pages/old-report/old-report";
 
 import { UseStateContext } from "./context/contextProvider";
 import EvangelismReportPage from "./pages/EvangelismReportPage/evangelismReportPage.component";
-import FollowUp from "./components/follow-up/follow-up.component";
+import FollowupReportPage from "./pages/Follow-upReportPage/followupReportPage.component";
 const App = () => {
   const {currentUserProfile} = UseStateContext();
   return (
@@ -38,10 +39,32 @@ const App = () => {
               <SignUp/>)} 
           />
 
+          <Route exact path='/old-report' element= {
+            currentUserProfile ? (
+            <OldReport/>
+            ) : (
+              <Navigate to='/signin'/>)} 
+          />
+
+          <Route exact path='/evangelismPage' element= {
+            currentUserProfile ? (
+            <EvangelismReportPage/>
+            ) : (
+              <Navigate to='/signin'/>)} 
+          />
+
+          <Route exact path='/follow-up' element= {
+            currentUserProfile ? (
+            <FollowupReportPage/>
+            ) : (
+              <Navigate to='/signin'/>)} 
+          />
+
 
           {/* <Route exact path='/user' Component={User}/> */}
+          <Route exact path="/old-report" Component={OldReport} />
           <Route exact path="/evangelismPage" Component={EvangelismReportPage} />
-          <Route exact path="/follow-up" Component={FollowUp} />
+          <Route exact path="/follow-up" Component={FollowupReportPage} />
           <Route exact path='/signin' Component={SignIn} />
           <Route exact path='/signup' Component={SignUp} />
           {/* <Route exact path='/userprofile' Component={UserProfile} /> */}
