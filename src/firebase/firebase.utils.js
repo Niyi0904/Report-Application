@@ -8,6 +8,9 @@ import { FieldValue, SnapshotMetadata, arrayUnion } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { json } from 'react-router';
 
+console.log(process.env.REACT_APP_PUBLIC_API_KEY); // Debugging: Check if it prints the correct key
+
+
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_PUBLIC_API_KEY,
     authDomain: process.env.REACT_APP_PUBLIC_AUTH_DOMAIN,
