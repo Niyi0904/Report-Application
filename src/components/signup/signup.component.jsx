@@ -3,7 +3,7 @@ import { UseStateContext } from '../../context/contextProvider';
 import IsLoading from '../isloading/isLoading';
 
 const SignUp = () => {
-    const { handleName, handlePhone, handleEmail, handlePassword, handleConfirmPassword, handleSubmit, selectGender, selectPrayerGroup, name, phone, email, password, confirmPassword, isLoading} = UseStateContext();
+    const { handleName, handlePhone, handleEmail, handlePassword, handleConfirmPassword, handleSubmit, selectGender, selectPrayerGroup, name, phone, email, password, confirmPassword, isLoading, handleAdmin} = UseStateContext();
  
     return (
         <div className='flex justify-center'>
@@ -113,6 +113,15 @@ const SignUp = () => {
                                     <option value='friday-evening'>Friday Evening (6:00pm - 9:00pm)</option>
                                     <option value='saturday-morning'>Saturday Morning (7:00am - 10:00am)</option>
                                     <option value='sunday'>Sunday (2:30pm - 5:30pm)</option>
+                                </select>
+                            </div>
+
+                            <div className='flex flex-col'>
+                                <label for="admin">Are you a cell Leader ?</label>
+                                <select id='admin' className='h-8 pl-2 rounded-md bg-white border-2 border-gray-500' onChange={handleAdmin}>
+                                    <option value='option'>Option</option>
+                                    <option value='yes'>Yes</option>
+                                    <option value='no'>No</option>
                                 </select>
                             </div>
                         </div>

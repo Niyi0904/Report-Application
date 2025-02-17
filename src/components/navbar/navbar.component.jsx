@@ -11,7 +11,7 @@ import { auth } from '../../firebase/firebase.utils';
 import { UseStateContext } from '../../context/contextProvider';
 
 
-const Navbar = () => {
+const Navbar = () => { 
     const {currentUserProfile, setCurrentUserprofile} = UseStateContext(); 
 
     const signOut = () => {

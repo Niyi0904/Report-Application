@@ -12,6 +12,12 @@ export const ContextProvider =({children}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [onAdd, setOnAdd] = useState(false);
   const [user, setUser] = useState(undefined);
+
+  const [admin, setAdmin] = useState('');
+  const handleAdmin = (e) => (
+    setAdmin(e.target.value)
+  );
+
   const [others, setOthers] = useState('');
   const handleOthers = (e) => (
     setOthers(e.target.value)
@@ -114,13 +120,14 @@ export const ContextProvider =({children}) => {
       name,
       phone,
       gender,
-      prayerGroup
+      prayerGroup,
+      admin
     }
 
 
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
+      console.log(user);
       // setCurrentUser(user)
       // if(currentUser) {
       //   console.log(currentUser);
@@ -134,12 +141,14 @@ export const ContextProvider =({children}) => {
       if (getUser) {
         setCurrentUserprofile(getUser.data());
         setTimeout(setIsLoading(false), 1000);
+        console.log(getUser.data())
       }
     } catch (error) {
       setTimeout(setIsLoading(false), 1000);
       alert(error.code);
     }
   };
+
 // SIGNIN WITH EMAIL AND PASSWORD
   const handleSignIn = async event =>{
     event.preventDefault();
@@ -160,7 +169,7 @@ export const ContextProvider =({children}) => {
           setIsLoading(false);
         }, 1000);
         
-        console.log(currentUserProfile.name);
+        console.log(currentUserProfile);
       }
 
       
@@ -178,6 +187,7 @@ export const ContextProvider =({children}) => {
       }
     }
   };
+
 // ADD EVANGELISM REPORT FUNCTION
   const handleAddEvangelismReport = () => {
     setOnAdd(false);
@@ -192,29 +202,38 @@ export const ContextProvider =({children}) => {
           const snapshot = await userRefCollectionPosts.get()
 
           if (snapshot.exists) {
-            await userRefCollectionPosts.update({
-            TodaysReport:arrayUnion({
-              NAME: name,
-              STATUS: status,
-              PHONE: phone,
-              ADDRESS: address, 
-              OTHERS: others
-            })
-            })
-        
-            console.log('updated');
-          } else {
-            userRefCollectionPosts.set({
+            try{
+              await userRefCollectionPosts.update({
               TodaysReport:arrayUnion({
                 NAME: name,
                 STATUS: status,
                 PHONE: phone,
-                ADDRESS: address,
+                ADDRESS: address, 
                 OTHERS: others
               })
-            });
+              })
+            } catch(error) {
+              alert(error);
+            }
+        
+            console.log('updated');
+          } else {
+            try{
+              userRefCollectionPosts.set({
+                TodaysReport:arrayUnion({
+                  NAME: name,
+                  STATUS: status,
+                  PHONE: phone,
+                  ADDRESS: address,
+                  OTHERS: others
+                })
+              });
+
+              setUser(userRefCollectionPosts);
+            } catch(error) {
+              alert(error);
+            }
             
-            setUser(userRefCollectionPosts);
             console.log('done setting');
           }
         } else {
@@ -225,6 +244,7 @@ export const ContextProvider =({children}) => {
       alert('Please Fill Required Areas');
     }
   }
+  
 // ADD FOLLOW-UP REPORT FUNCTION
 const handleAddFollowUpReport = () => {
   setOnAdd(false);
@@ -323,6 +343,7 @@ const handleAddFollowUpReport = () => {
       handleDuration,
       setRemark, 
       handleRemark,
+      handleAdmin,
       handleAddFollowUpReport }}
   >
     {children}

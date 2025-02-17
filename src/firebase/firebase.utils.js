@@ -8,8 +8,6 @@ import { FieldValue, SnapshotMetadata, arrayUnion } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { json } from 'react-router';
 
-console.log(process.env.REACT_APP_PUBLIC_API_KEY); // Debugging: Check if it prints the correct key
-
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_PUBLIC_API_KEY,
@@ -31,7 +29,7 @@ export const createUserProfileDocument = async (userAuth, userInfo) => {
 
     if (!snapShot.exists) {
       const { email, uid } = userAuth;
-      const {name, phone, gender, prayerGroup} = userInfo;
+      const {name, phone, gender,admin, prayerGroup} = userInfo;
       const createdAt = new Date();
 
       try {
@@ -42,6 +40,7 @@ export const createUserProfileDocument = async (userAuth, userInfo) => {
           gender,
           uid,
           prayerGroup,
+          admin,
           createdAt
         })
       } catch (error) {
