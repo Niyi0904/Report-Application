@@ -17,11 +17,16 @@ const Evangelism = ({ id, data }) => {
                         <ol className="list-decimal mx-4 text-lg text-gray-800">
                             {data.TodaysReport.map((report, index) => (
                                 <li key={index} className='pb-4'>
-                                    <div className='my-2'>
-                                        <div>{report.NAME}</div>
-                                        <div>{report.STATUS}</div>
-                                        <div>{report.PHONE}</div>
-                                        <div>{report.ADDRESS}</div>
+                                    <div className='my-3 space-y-1'>
+                                        <div><span className='font-bold'>Name:</span> {report.NAME}</div>
+
+                                        <div><span className='font-bold'>Status:</span> {report.STATUS}</div>
+
+                                        <div><span className='font-bold'>Phone:</span> {report.PHONE}</div>
+
+                                        <div><span className='font-bold'>Address:</span> {report.ADDRESS}</div>
+
+                                        <div><span className='font-bold'>Others:</span> {report.OTHERS}</div>
                                     </div>
                                 </li>
                             ))}
