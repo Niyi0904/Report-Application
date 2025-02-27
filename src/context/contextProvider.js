@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { firestore, auth } from "../firebase/firebase.utils";
+import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { createUserProfileDocument } from "../firebase/firebase.utils";
 import { FieldValue, SnapshotMetadata, arrayUnion } from 'firebase/firestore';
 
@@ -17,6 +18,12 @@ export const ContextProvider =({children}) => {
   const handleAdmin = (e) => (
     setAdmin(e.target.value)
   );
+
+  const [month, setMonth] = useState('');
+    const handleMonth = (e) => {
+        setMonth(e.target.value)
+    }
+
 
   const [others, setOthers] = useState('');
   const handleOthers = (e) => (
@@ -121,7 +128,7 @@ export const ContextProvider =({children}) => {
       phone,
       gender,
       prayerGroup,
-      admin
+      admin 
     }
 
 
@@ -165,13 +172,20 @@ export const ContextProvider =({children}) => {
         const userData = getUser.data();
         setCurrentUserprofile(userData);
 
+        const userReference = doc(firestore, 'users', user.uid);
+        const update = await updateDoc(userReference, {
+          lastLogin: serverTimestamp(),
+        });
+
+        console.log(userData)
+
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
         
-        console.log(currentUserProfile);
       }
-
+      
+      console.log(user);
       
 
       // await createUserProfileDocument(user, currentUserInfo);
@@ -344,7 +358,9 @@ const handleAddFollowUpReport = () => {
       setRemark, 
       handleRemark,
       handleAdmin,
-      handleAddFollowUpReport }}
+      handleAddFollowUpReport,
+      month,
+      handleMonth }}
   >
     {children}
   </StateContext.Provider>

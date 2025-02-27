@@ -3,7 +3,7 @@ import { UseStateContext } from '../../context/contextProvider';
 import IsLoading from '../isloading/isLoading';
 
 const SignUp = () => {
-    const { handleName, handlePhone, handleEmail, handlePassword, handleConfirmPassword, handleSubmit, selectGender, selectPrayerGroup, name, phone, email, password, confirmPassword, isLoading, handleAdmin} = UseStateContext();
+    const { handleName, handlePhone, handleEmail, handlePassword, handleConfirmPassword, handleSignUp, selectGender, selectPrayerGroup, name, phone, email, password, confirmPassword, isLoading, handleAdmin} = UseStateContext();
  
     return (
         <div className='flex justify-center'>
@@ -11,10 +11,10 @@ const SignUp = () => {
             <div className="flex flex-col sign-up-bg rounded-md w-[40%] xs:w-[90%] sm:w-[90%] min-h-96 items-center relative top-7 space-y-11">
                 <h1 className='signin-header'>Register</h1>
                 <div className='relative w-[90%]'>
-                    <form id="signin-form" onSubmit={handleSubmit} >
+                    <form id="signin-form" onSubmit={handleSignUp} >
                         <div className="flex flex-col relative w-full space-y-7">
                             <div className="flex flex-col relative w-full space-y-2">
-                                <label for="name">Name</label>
+                                <label htmlFor="name">Name</label>
                                 <input 
                                     type="text" 
                                     id='name' 
@@ -28,7 +28,7 @@ const SignUp = () => {
                             </div> 
 
                             <div className="flex flex-col relative w-full space-y-2">
-                                <label for="name">Phone</label>
+                                <label htmlFor="name">Phone</label>
                                 <input 
                                     type="tel" 
                                     id='phone' 
@@ -42,7 +42,7 @@ const SignUp = () => {
                             </div>
 
                             <div className="flex flex-col relative w-full space-y-2">
-                                <label for="email">Email</label>
+                                <label htmlFor="email">Email</label>
                                 <input 
                                     type="email" 
                                     id='email' 
@@ -56,7 +56,7 @@ const SignUp = () => {
                             </div>
 
                             <div className="flex flex-col relative w-full space-y-2">
-                                <label for="password">Password</label>
+                                <label htmlFor="password">Password</label>
                                 <input 
                                     type="password" 
                                     id="password" 
@@ -77,7 +77,7 @@ const SignUp = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col relative w-full space-y-2">
-                                <label for="password">Confirm Password</label>
+                                <label htmlFor="password">Confirm Password</label>
                                 <input 
                                     type="password" 
                                     id="confirm-password" 
@@ -91,7 +91,7 @@ const SignUp = () => {
                             </div>
 
                             <div className='flex flex-col'>
-                                <label for="gender">Gender</label>
+                                <label htmlFor="gender">Gender</label>
                                 <select id='gender' className='h-8 pl-2 rounded-md bg-white border-2 border-gray-500' onChange={selectGender}>
                                     <option value='select gender'>Select gender</option>
                                     <option value='male'>Male</option>
@@ -100,7 +100,7 @@ const SignUp = () => {
                             </div>
 
                             <div className='flex flex-col'>
-                                <label for="prayer-group">Prayer Group</label>
+                                <label htmlFor="prayer-group">Prayer Group</label>
                                 <select id='prayer-group' className='h-8 pl-2 rounded-md bg-white border-2 border-gray-500' onChange={selectPrayerGroup}>
                                     <option value='monday-morning'>Monday Morning (7:00am - 10:00am) </option>
                                     <option value='monday-evening'>Monday Evening  (6:00pm - 9:00pm)</option>
@@ -117,7 +117,7 @@ const SignUp = () => {
                             </div>
 
                             <div className='flex flex-col'>
-                                <label for="admin">Are you a cell Leader ?</label>
+                                <label htmlFor="admin">Are you a cell Leader ?</label>
                                 <select id='admin' className='h-8 pl-2 rounded-md bg-white border-2 border-gray-500' onChange={handleAdmin}>
                                     <option value='option'>Option</option>
                                     <option value='yes'>Yes</option>

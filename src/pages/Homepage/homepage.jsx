@@ -14,7 +14,7 @@ const HomePage = () => {
     return (
         <div id="niyi" className="h-screen relative">
             <Navbar/>
-            <div className='relative homepage-header-bg w-full min-h-28 mx-auto text-center pt-6 top-6'>
+            <div className='relative homepage-header-bg w-full min-h-28 mx-auto text-center pt-6 top-6 mb-10'>
                 <h1 className='home-header'>Your Weekly Reporting Application</h1>
             </div>
 

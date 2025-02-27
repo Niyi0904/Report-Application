@@ -1,5 +1,6 @@
-import Navbar from "../../components/navbar/navbar.component";
 import Evangelism from "../../components/evangelism/evangelism.component";
+import AdminEvangelismReport from "../../components/evangelism/adminEvangelismReport";
+import Navbar from "../../components/navbar/navbar.component";
 import { firestore } from "../../firebase/firebase.utils";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -10,31 +11,11 @@ import InputEvangelism from "../../components/input-report/input-report.componen
 import './evangelismReportPage.component.css';
 
 const EvangelismReportPage = () => {
-    const {currentUserProfile, onAdd, user, setOnAdd} = UseStateContext();
-    const [doc, setDoc] = useState([]);
+    const {currentUserProfile, onAdd, user, setOnAdd, handleMonth} = UseStateContext(); 
 
     const handleAddNewReport = () => {
         setOnAdd(true);
     }
-
-    useEffect( () => {
-
-        const getUser = async () => {
-            if (currentUserProfile) {
-                const collectionRef = collection(firestore, 'users', `${currentUserProfile.uid}`, 'Evangelism-Report');
-                const snapshot = await getDocs(collectionRef)
-                const fetchedDocs = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    data: doc.data(), // Fetch the entire document data;
-                }));
-
-                console.log(fetchedDocs.id)
-                setDoc(fetchedDocs);
-            }
-        }
-
-        getUser(); 
-    }, [user]) 
 
     return (
         <div id="niyi" className="home-container">
@@ -44,14 +25,28 @@ const EvangelismReportPage = () => {
                 <h1 className='evangelism-header'>Evangelism Report</h1>
             </div>
 
-            <div className='relative w-[100%] h-8 mx-auto flex justify-center top-9 rounded-md'>
-                <button className='relative h-10 min-w-[20%] xs:min-w-[40%] px-4 sm:min-w-[40%] bg-sky-600 rounded-md text-md tracking-wide font-medium' onClick={handleAddNewReport}>Add New Evangelism Report</button>
+            <div className='relative w-[100%] h-8 mx-auto flex justify-center top-9 mb-7 rounded-md'>
+                <select id='admin' onChange={handleMonth} className='relative h-10 min-w-[20%] xs:min-w-[40%] px-4 sm:min-w-[40%] bg-sky-600 rounded-md text-md tracking-wide font-medium'>
+                    <option value='2'>All</option>
+                    <option value='2025-01'>January</option>
+                    <option value='2025-02'>Feburary</option>
+                    <option value='2025-03'>March</option>
+                    <option value='2025-04'>April</option>
+                    <option value='2025-05'>May</option>
+                    <option value='2025-06'>June</option>
+                    <option value='2025-07'>July</option>
+                    <option value='2025-08'>August</option>
+                    <option value='2025-09'>September</option>
+                    <option value='2025-10'>October</option>
+                    <option value='2025-11'>November</option>
+                    <option value='2025-12'>December</option>
+                </select>
             </div>
-
-            {currentUserProfile &&
-                doc.map((doc) => (
-                    <Evangelism key={doc.id} id={doc.id} data={doc.data} />
-            ))}
+            {currentUserProfile.admin === 'yes' ? 
+                (<AdminEvangelismReport/>)
+                :
+                (<Evangelism/>)
+            }
         </div>
 )};
 
